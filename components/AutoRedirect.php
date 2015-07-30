@@ -17,14 +17,11 @@ class AutoRedirect {
     static function toString ($s) {
         return (string) $s;
     }
-	static public function init(&$parser) {
-		global $wgLanguageCode;
-        global $wgAutoRedirectNamespaces;// = array();//self::parseConfig('*test=test');
-        $wgAutoRedirectNamespaces = self::ParseConfig(wfMessage('autoredirect-namespaces')->inLanguage($wgLanguageCode)->plain());
-	}
     static function getNsConfig () {
         if (self::$NsConfig == null) {
+			global $wgLanguageCode;
             global $wgAutoRedirectNamespaces;
+			$wgAutoRedirectNamespaces = self::ParseConfig(wfMessage('autoredirect-namespaces')->inLanguage($wgLanguageCode)->plain());
             $config = array();
             foreach ($wgAutoRedirectNamespaces as $ns => $list) {
                 if (!is_array($list)) $list = array($list);
@@ -110,7 +107,7 @@ class AutoRedirect {
         $limit = max(2, $wgMaxRedirects);
         $new = self::findDestinationTitle($title, $limit);
         if ($new->getFullText() == $title->getFullText()) return false;
-        else return $new;
+        return $new;
     }
     static function PrefixSearchBackend ($namespaces, $search, $limit, &$results) {
         // Based on PrefixSearch::defaultSearchBackend
@@ -165,7 +162,7 @@ class AutoRedirect {
 			if (count($parts) == 1) { // bad syntax
 				continue;
 			}
-			$list = preg_split('/,/', $parts[1], 2);
+			$list = preg_split('/,/', $parts[1]);
 			$map[$parts[0]] = $list;
 		}
 		return $map;
@@ -199,4 +196,3 @@ $wgHooks['TitleIsAlwaysKnown'][] = function($title, &$result) {
 };
 
 $wgHooks['PrefixSearchBackend'][] = 'AutoRedirect::PrefixSearchBackend';
-$wgHooks['ParserFirstCallInit'][] = 'AutoRedirect::init';
