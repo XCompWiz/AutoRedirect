@@ -207,3 +207,4 @@ $wgHooks['TitleIsAlwaysKnown'][] = function($title, &$result) {
 };
 
 $wgHooks['PrefixSearchBackend'][] = 'AutoRedirect::PrefixSearchBackend';
+$wgHooks['ParserFirstCallInit'][] = 'AutoRedirect::init';
