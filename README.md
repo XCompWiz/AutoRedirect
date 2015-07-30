@@ -5,9 +5,11 @@ This allows links to the (Main) namespace to be redirected to an identically nam
 
 It also can be used to redirect pages using transformations to a page's name.
 It applies mb_strtolower by default.  The functions to use can be specified via the php settings using:
+```
 $wgAutoRedirectChecks = array(
 	'mb_strtolower',
 );
+```
 
 Example of namespace redirection:
 On the main page of the wiki there is a link to a page describing some mechanism in a software application.  There are several namespaces in which this page exists, with each namespace being a different version of the software.
