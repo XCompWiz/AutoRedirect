@@ -14,3 +14,7 @@ On the main page of the wiki there is a link to a page describing some mechanism
 This plugin allows us to automatically redirect to the page in the namespace for the most recent version of the software.
 
 It is recommended that you pair this with the https://github.com/df-wiki/namespacelinks extension or some equivalent to have links on a page within such a version namespace to default to remaining within that namespace.
+
+Usage
+-----
+See the [wiki](https://github.com/XCompWiz/AutoRedirect/wiki/Configuration).
