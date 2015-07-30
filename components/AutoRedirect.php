@@ -7,15 +7,6 @@
  * This code taken from https://github.com/DF-Wiki/DFWikiFunctions on 30.07.2015
  */
 
-$wgExtensionCredits['AutoRedirect'][] = array(
-    'path' => __FILE__,
-    'name' => 'AutoRedirect',
-    'author' =>'Lethosor',
-    'url' => 'https://github.com/lethosor/DFWikiFunctions',
-    'description' => 'Automatically redirects pages to more appropriate titles',
-    'version'  => '1.0.6',
-);
-
 $wgAutoRedirectNamespaces = array();
 $wgAutoRedirectChecks = array(
 	'mb_strtolower',
@@ -27,8 +18,9 @@ class AutoRedirect {
         return (string) $s;
     }
 	static public function init(&$parser) {
-		global $wgLanguageCode
-        global $wgAutoRedirectNamespaces = ParseConfig(wfMessage('autoredirect-namespaces')->inLanguage($wgLanguageCode)->plain());
+		global $wgLanguageCode;
+        global $wgAutoRedirectNamespaces;// = array();//self::parseConfig('*test=test');
+        $wgAutoRedirectNamespaces = self::ParseConfig(wfMessage('autoredirect-namespaces')->inLanguage($wgLanguageCode)->plain());
 	}
     static function getNsConfig () {
         if (self::$NsConfig == null) {
@@ -152,7 +144,7 @@ class AutoRedirect {
         $results = $srchres;
         return false;
     }
-	function ParseConfig ($text) {
+	static function parseConfig ($text) {
 		/*
 		 * This function modeled off of code from https://github.com/DF-Wiki/NamespaceLinks
 		 * Parses configuration text, in the following format:

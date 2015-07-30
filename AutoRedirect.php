@@ -11,7 +11,7 @@ if (!isset($wgWikiEditorFeatures)) {
 */
 require_once 'components/AutoRedirect.php';
 
-$wgExtensionMessagesFiles['AutoRedirect'] = dirname( __FILE__ ) . '/AutoRedirect.i18n.php';
+$wgExtensionMessagesFiles['AutoRedirect'] = dirname( __FILE__ ) . '/components/AutoRedirect.i18n.php';
 
 $wgExtensionCredits['AutoRedirect'][] = array(
 	'path' => __FILE__,
@@ -19,5 +19,5 @@ $wgExtensionCredits['AutoRedirect'][] = array(
 	'author' =>'Lethosor, XCompWiz',
 	'url' => 'https://github.com/xcompwiz/AutoRedirect',
 	'description' => 'Automatically redirect users to configured namespaces',
-	//'version'  => '1.0.5-dev',
+    'version'  => '1.0.6',
 );
